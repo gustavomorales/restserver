@@ -45,11 +45,12 @@ Class Products extends CI_Model{
 
 		public function mostrarproductos()
 	{
-		$this->db->select('producto_id,producto,precio,cantidad,u.unidad,c.categoria');
+		$this->db->select('producto_id,producto,precio,cantidad,u.unidad,c.categoria,f.fabricante,m.marca');
 		$this->db->from('products');
 		$this->db->join('unidad u','u.id_unidad = unidad_id');
 		$this->db->join('categorias c','c.id_categoria = categoria_id');
-		//$this->db->join('marcas m','m.id_unidad = marca_id');
+		$this->db->join('marcas m','m.id_marca = marca_id');
+		$this->db->join('fabricantes f','f.id_fabricante = fabricante_id');
 		
 		$r=$this->db->get();
 	

@@ -20,6 +20,9 @@
   <th>precio</th>
   <th>cantidad</th>
   <th>Unidad</th>
+  <th>Fabricante</th>
+  <th>Categoria</th>
+  <th>Marca</th>
   <th></th>
   <th></th>
 
@@ -38,7 +41,10 @@
     echo '<td style="vertical-align:middle">'.$datos->producto.'</td>';
     echo '<td style="vertical-align:middle">'.$datos->precio.'</td>';
     echo '<td style="vertical-align:middle">'.$datos->cantidad.'</td>';
+    echo '<td style="vertical-align:middle">'.$datos->unidad.'</td>';
+    echo '<td style="vertical-align:middle">'.$datos->fabricante.'</td>';
     echo '<td style="vertical-align:middle">'.$datos->categoria.'</td>';
+    echo '<td style="vertical-align:middle">'.$datos->marca.'</td>';
     echo '<td> <a href="buscar?id='.$datos->producto_id.'" class="btn btn-warning "><i class="glyphicon glyphicon-pencil"></i></a>'."".'</td>';
     echo '<td> <a href="eliminar?id='.$datos->producto_id.'" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a> '."".'</td>';
     echo '</tr>';
