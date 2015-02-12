@@ -90,6 +90,21 @@ Class Products extends CI_Model{
 		return $query;
 
 	}
+
+	public function buscarxfab($id){
+		
+		$this->db->select('p.producto_id,p.producto,p.precio,p.cantidad,u.unidad,f.fabricante');
+		$this->db->from('products p');
+		$this->db->where('fabricante_id',$id);
+		$this->db->join('unidad u','u.id_unidad = p.unidad_id');
+		$this->db->join('fabricantes f','f.id_fabricante = p.fabricante_id');
+		$r=$this->db->get();
+		$query=$r->result();
+
+
+		return $query;
+
+	}
 		public function buscarproducto($producto){
 		$this->db->select('producto_id,producto,precio,cantidad,unidad_id');
 		$this->db->from('products');

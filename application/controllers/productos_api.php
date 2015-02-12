@@ -43,7 +43,7 @@ class Productos_api extends REST_Controller{
             $this->response(array('error' => 'No hay Producto'), 404);
         }
     }
-        function productxcat_get()
+    function productxcat_get()
     {
         if(!$this->get('id'))
         {
@@ -68,6 +68,28 @@ class Productos_api extends REST_Controller{
         else
         {
             $this->response(array('error' => 'No hay Producto con esa categoria'), 404);
+        }
+    }
+
+    function productxfab_get()
+    {
+        if(!$this->get('id'))
+        {
+            $this->response(NULL, 400);
+        }
+
+        $this->load->model('products');
+        
+        $product = $this->products->buscarxfab($this->get('id'));
+        
+        if($product)
+        {
+            $this->response($product, 200); // 200 being the HTTP response code
+        }
+
+        else
+        {
+            $this->response(array('error' => 'No hay Producto para ese fabricante'), 404);
         }
     }
 
