@@ -106,6 +106,21 @@ class Productos extends CI_Controller {
 				$datos['precio']=$data->precio;
 				$datos['cantidad']=$data->cantidad;
 				$datos['unidad']=$data->unidad;
+				$datos['marca']=$data->marca;
+				$datos['categoria']=$data->categoria;
+				$datos['fabricante']=$data->fabricante;
+				$datos['categoria_id']=$data->categoria_id;
+				$datos['fabricante_id']=$data->fabricante_id;
+				$datos['marca_id']=$data->marca_id;
+				$datos['unidad_id']=$data->unidad_id;
+				$this->load->model('categorias');
+				$this->load->model('fabricantes');
+				$this->load->model('marcas');
+				$this->load->model('unidad');
+				$datos['categorias']=$this->categorias->mostrarcategorias();
+				$datos['fabricantes']=$this->fabricantes->mostrarfabricantes();
+				$datos['marcas']=$this->marcas->mostrarmarcas();
+				$datos['unidades']=$this->unidad->mostrarunidades();
 				$this->load->library('session');
 				$this->session->set_userdata($datos);
 		
@@ -140,8 +155,11 @@ class Productos extends CI_Controller {
 			$precio=$_POST['precio'];
 			$cantidad=$_POST['cantidad'];
 			$unidad=$_POST['unidad'];
+			$marca=$_POST['marca'];
+			$fabricante=$_POST['fabricante'];
+			$categoria=$_POST['categoria'];
 
-			$data=array('producto'=>$producto,'precio'=>$precio,'cantidad'=>$cantidad,'unidad'=>$unidad);
+			$data=array('producto'=>$producto,'precio'=>$precio,'cantidad'=>$cantidad,'unidad_id'=>$unidad,'marca_id'=>$marca,'fabricante_id'=>$fabricante,'categoria_id'=>$categoria);
 			
 			$this->products->update($id,$data);
 			$datos['productos']=$this->products->mostrarproductos();
@@ -159,8 +177,12 @@ class Productos extends CI_Controller {
 					$precio=$_POST['precio'];
 					$cantidad=$_POST['cantidad'];
 					$unidad=$_POST['unidad'];
+					$marca=$_POST['marca'];
+					$fabricante=$_POST['fabricante'];
+					$categoria=$_POST['categoria'];
 
-					$data=array('producto'=>$producto,'precio'=>$precio,'cantidad'=>$cantidad,'unidad'=>$unidad);
+					$data=array('producto'=>$producto,'precio'=>$precio,'cantidad'=>$cantidad,'unidad_id'=>$unidad,'marca_id'=>$marca,'fabricante_id'=>$fabricante,'categoria_id'=>$categoria);
+			
 					
 					$this->products->update($id,$data);
 					$datos['productos']=$this->products->mostrarproductos();

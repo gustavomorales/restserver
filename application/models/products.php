@@ -62,9 +62,13 @@ Class Products extends CI_Model{
 
 
 	public function buscar($id){
-		$this->db->select('producto_id,producto,precio,cantidad,unidad_id');
+		$this->db->select('producto_id,producto,precio,cantidad,u.unidad,c.categoria,f.fabricante,m.marca,unidad_id,marca_id,fabricante_id,categoria_id');
 		$this->db->from('products');
 		$this->db->where('producto_id',$id);
+		$this->db->join('unidad u','u.id_unidad = unidad_id');
+		$this->db->join('categorias c','c.id_categoria = categoria_id');
+		$this->db->join('marcas m','m.id_marca = marca_id');
+		$this->db->join('fabricantes f','f.id_fabricante = fabricante_id');
 		$query=$this->db->get();
 
 		return $query;

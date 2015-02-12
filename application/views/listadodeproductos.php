@@ -98,8 +98,59 @@
   </div>
     <div class="form-group">
     <label for="Unidad">Unidad</label>
-    <input type="text" class="form-control" id="unidad" name="unidad"
-           placeholder="Ingrese la unidad" value="<?php if(isset($unidad)){echo $unidad;}?>" >
+    <!--<input type="text" class="form-control" id="unidad" name="unidad"
+           placeholder="Ingrese la unidad" value="<?php if(isset($unidad)){echo $unidad;}?>" >-->
+        <select class="form-control" name="unidad" id="unidad">
+        <option value= "<?php if(isset($unidad_id)){echo $unidad_id;}?>"><?php if(isset($unidad)){echo $unidad;}?></option>
+        <?php
+        foreach ($unidades->result() as $data) { ?>
+        <option value= "<?= $data->id_unidad;?>"><?= $data->unidad;?> </option>  
+       <?php  } 
+        ?>
+      </select>
+  </div>
+      <div class="form-group">
+    <label for="Marca">Marca</label>
+    <!--<input type="text" class="form-control" id="unidad" name="unidad"
+           placeholder="Ingrese la unidad" value="<?php if(isset($unidad)){echo $unidad;}?>" >-->
+        <select class="form-control" name="marca" id="marca">
+        <option value= "<?php if(isset($marca_id)){echo $marca_id;}?>"><?php if(isset($marca)){echo $marca;}?></option>
+        <?php
+        foreach ($marcas->result() as $data) { ?>
+        <option value= "<?= $data->id_marca;?>"><?= $data->marca;?> </option>  
+       <?php  } 
+        ?>
+      </select>
+  </div>
+
+      <div class="form-group">
+    <label for="Fabricante">Fabricante</label>
+    <!--<input type="text" class="form-control" id="unidad" name="unidad"
+           placeholder="Ingrese la unidad" value="<?php if(isset($unidad)){echo $unidad;}?>" >-->
+        <select class="form-control" name="fabricante" id="fabricante">
+        <option value= "<?php if(isset($fabricante_id)){echo $fabricante_id;}?>"><?php if(isset($fabricante)){echo $fabricante;}?></option>
+        <?php
+        foreach ($fabricantes->result() as $data) { ?>
+        <option value= "<?= $data->id_fabricante;?>"><?= $data->fabricante;?> </option>  
+       <?php  } 
+        ?>
+      </select>
+  </div>
+
+      <div class="form-group">
+    <label for="Categoria">Categoria</label>
+    <!--<input type="text" class="form-control" id="unidad" name="unidad"
+           placeholder="Ingrese la unidad" value="<?php if(isset($unidad)){echo $unidad;}?>" >-->
+        <select class="form-control" name="categoria" id="categoria">
+        <option value= "<?php if(isset($categoria_id)){echo $categoria_id;}?>"><?php if(isset($categoria)){echo $categoria;}?></option>
+        <?php
+        foreach ($categorias->result() as $data) { ?>
+        <option value= "<?= $data->id_categoria;?>"><?= $data->categoria;?> </option>  
+       <?php  } 
+        ?>
+      </select>
+  </div>
+
   </div>
   <button type="submit" class="btn btn-success "> Guardar </button>
   </form>
