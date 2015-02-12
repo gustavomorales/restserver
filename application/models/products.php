@@ -71,6 +71,21 @@ Class Products extends CI_Model{
 
 
 	}
+
+	public function buscarxcat($id){
+		
+		$this->db->select('p.producto_id,p.producto,p.precio,p.cantidad,u.unidad,c.categoria');
+		$this->db->from('products p');
+		$this->db->where('categoria_id',$id);
+		$this->db->join('unidad u','u.id_unidad = p.unidad_id');
+		$this->db->join('categorias c','c.id_categoria = p.categoria_id');
+		$r=$this->db->get();
+		$query=$r->result();
+
+
+		return $query;
+
+	}
 		public function buscarproducto($producto){
 		$this->db->select('producto_id,producto,precio,cantidad,unidad_id');
 		$this->db->from('products');

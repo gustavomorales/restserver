@@ -70,8 +70,8 @@ Class Categorias extends CI_Model{
 		$this->db->select('id_categoria,categoria');
 		$this->db->from('categorias');
 		$this->db->where('categoria',$producto);
-		$query=$this->db->get();
-
+		$r=$this->db->get();
+		$query=$r->result_array();
 		return $query;
 
 
