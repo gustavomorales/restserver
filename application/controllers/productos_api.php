@@ -93,16 +93,22 @@ class Productos_api extends REST_Controller{
         }
     }
 
-        function productxfabxcat_get()
+        function productxcatxfab_get()
     {
-        if(!$this->get('id') && !$this->get('id') )
+        if(!$this->get('idcat'))
         {
             $this->response(NULL, 400);
         }
 
+        if(!$this->get('idfab'))
+        {
+            $this->response(NULL, 400);
+        }
+
+
         $this->load->model('products');
         
-        $product = $this->products->buscarxfabxcat($this->get('id'));
+        $product = $this->products->buscarxfabxcat($this->get('idcat'),$this->get('idfab'));
         
         if($product)
         {
@@ -138,12 +144,7 @@ class Productos_api extends REST_Controller{
 
     function products_get()
     {
-        //$users = $this->some_model->getSomething( $this->get('limit') );
-        /*$users = array(
-            array('id' => 1, 'name' => 'Some Guy', 'email' => 'example1@example.com'),
-            array('id' => 2, 'name' => 'Person Face', 'email' => 'example2@example.com'),
-            3 => array('id' => 3, 'name' => 'Scotty', 'email' => 'example3@example.com', 'fact' => array('hobbies' => array('fartings', 'bikes'))),
-        );*/
+
 
         $this->load->model('products');
   
