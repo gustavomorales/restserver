@@ -16,7 +16,7 @@
             <li><a href="<?php echo base_url()?>index.php/productos/agregarvarios"> <span class="glyphicon glyphicon-pencil "></span>Agregar Varios</a></li>
             <li><a href="<?php echo base_url()?>index.php/usuarios/eliminar"> <span class="glyphicon glyphicon-trash "></span>Eliminar</a></li>
             <li><a href="<?php echo base_url()?>index.php/productos/mostrarproductos"> <span class="glyphicon glyphicon-trash "></span>Listado de Productos</a></li>
-            <li><a href="#contact"> <span class="glyphicon glyphicon-off fa-spin"></span>Salir</a></li>
+            <li><a href="<?php echo base_url()?>index.php/login/logout"> <span class="glyphicon glyphicon-off fa-spin"></span>Salir</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
