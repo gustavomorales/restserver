@@ -14,7 +14,7 @@
     <div class="form-group">
     <label for="Usuario">Usuario</label>
     <input type="text" class="form-control" id="usuario" name="usuario"
-           placeholder="Ingrese un Usuario" required value="<?php if(isset($user)){echo $user;}?>">
+           placeholder="Ingrese un Usuario" required >
   	</div>
    <div class="form-group">
     <label for="pass">Contraseña</label>
@@ -30,17 +30,20 @@
 
     <label for="nombre">Nombre</label>
     <input type="text" class="form-control" id="nombre" name="nombre"
-           placeholder="Ingresa tu nombre" required="" value="<?php if(isset($nom)){echo $nom;}?>">
+           placeholder="Ingresa tu nombre" required="">
   </div>
   <div class="form-group">
     <label for="apellido">Email</label>
-    <input type="email" class="form-control" id="apellido" name="apellido"
-           placeholder="Ingresa tu email" required="" value="<?php if(isset($ape)){echo $ape;}?>">
+    <input type="email" class="form-control" id="email" name="email"
+           placeholder="Ingresa tu email" required="">
   </div>
 
   </div>
     <button type="submit" class="btn btn-success">Registrar</button>
     </form>
 </div>
+
+<div class="alert alert-info" style="visibility:<?php if(isset($mensaje)){echo 'visible';}else{echo 'hidden';} ?>;">
+  <?=validation_errors();?></div>
 </body>
 </html>

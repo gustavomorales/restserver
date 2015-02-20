@@ -13,7 +13,7 @@ Class Usuarios extends CI_Model{
 		$this->db->select('usuario,email,nombre');
 		$this->db->from('usuarios');
 		$this->db->where('usuario',$usuario);
-		$this->db->where('contraseña',$pass);
+		$this->db->where('pass',$pass);
 	
 
 		$query=$this->db->get();
@@ -37,7 +37,7 @@ Class Usuarios extends CI_Model{
 	{
 		$this->db->select('usuario,email,nombre');
 		$this->db->from('usuarios');
-		$this->db->where('usuario_id',$id);
+		$this->db->where('id_usuario',$id);
 		$query=$this->db->get();
 
 		return $query;
@@ -56,7 +56,7 @@ Class Usuarios extends CI_Model{
 	}
 		public function update($id,$data){
 
-		$this->db->where('usuario_id', $id);
+		$this->db->where('id_usuario', $id);
 		$this->db->update('usuarios', $data); 
 
 
