@@ -1,25 +1,37 @@
-<?php 
+	<?php 
 Class Usuarios extends CI_Model{
 
 
 	function _contructor(){
 		parent::Model();
+
 	}
 
 	
 
-	public function login($usuario,$pass)
+	public function login($usuario,$hash)
 	{
-		$this->db->select('usuario,email,nombre');
+		$this->db->select('usuario,pass,email,nombre');
 		$this->db->from('usuarios');
 		$this->db->where('usuario',$usuario);
-		$this->db->where('pass',$pass);
-	
-
 		$query=$this->db->get();
-		
 
-		return $query	;
+		if($query->num_rows() == 1)
+        {
+            $user = $query->row();
+            $pass = $user->pass;
+
+ 			
+            if($this->bcrypt->check_password($hash, $pass))
+            {	
+                return $query;
+            }else{
+            	
+            	return "vacio";
+            }
+        }
+    
+		
 	}
 
 

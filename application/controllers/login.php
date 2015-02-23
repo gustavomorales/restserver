@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+	<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
@@ -22,22 +22,27 @@ class Login extends CI_Controller {
 			$pass=$_POST['pass'];
 			$this->load->model('usuarios');
 			$user=$this->usuarios->login($usuario,$pass);
-			$user2=$user->result();
-			
-
-			if($user2){
-				$this->load->library('session');
-				$userdata=array('usuario'=>$user2[0]->usuario,'email'=>$user2[0]->email,'nombre'=>$user2[0]->nombre,'validated'=>true);
-				$this->session->set_userdata($userdata);
-				
-				$this->load->view('inicio');
-			}
-			else
-			{	
+			if($user=="vacio"){
 				$datos["mensaje"]="Usuario o Contraseña Incorrectos";
 				
 				$this->load->view('login',$datos);
+
 			}
+			else{
+			$user2=$user->result();
+
+				if($user2){
+
+					$this->load->library('session');
+					$userdata=array('usuario'=>$user2[0]->usuario,'email'=>$user2[0]->email,'nombre'=>$user2[0]->nombre,'validated'=>true);
+					$this->session->set_userdata($userdata);
+					
+					$this->load->view('inicio');
+				}
+
+			}
+
+
 		} else {
 
 			$datos["mensaje"]="Validacion incorrecta";

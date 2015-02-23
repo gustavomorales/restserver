@@ -57,6 +57,7 @@ class Productos extends CI_Controller {
 			
 
 			$this->load->model('products');
+			$this->load->model('usuarios');
 			$id=$this->products->agregar($data);
 			$data['getproducto']= $this->products->mostrarultimo($id);
 			$this->load->model('categorias');

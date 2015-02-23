@@ -7,10 +7,11 @@
 <body>
 <?php $this->load->view('headers/menu')?>;
 <div class="container container2">
+<h1>Registro de Usuarios</h1>
 <div class="row">
 	<div id="contenedor" class="col-md-4 col-md-offset-4">
 
-	<form class="form2" role="form" method="POST" action="<?php echo base_url('index.php/usuarios/agregar')?>">
+	<form class="form2" role="form" method="POST" action="<?php echo base_url('index.php/users/agregar')?>">
     <div class="form-group">
     <label for="Usuario">Usuario</label>
     <input type="text" class="form-control" id="usuario" name="usuario"
@@ -37,13 +38,52 @@
     <input type="email" class="form-control" id="email" name="email"
            placeholder="Ingresa tu email" required="">
   </div>
-
+      <button type="submit" class="btn btn-success btn1 btn-block">Registrar</button>
   </div>
-    <button type="submit" class="btn btn-success">Registrar</button>
+
     </form>
 </div>
 
 <div class="alert alert-info" style="visibility:<?php if(isset($mensaje)){echo 'visible';}else{echo 'hidden';} ?>;">
+  <?php echo $mensaje;?>
   <?=validation_errors();?></div>
+
+<div class="container" style="visibility:<?php if(isset($getusuario)){echo 'visible';}else{echo 'hidden';} ?>;">
+  <div class="table-responsive div1">
+  <table class="table table-hover" >
+  <thead>
+  <tr>
+  <th>Usuario</th>
+  <th>Nombre</th>
+  <th>Email</th>
+
+  </tr>
+  </thead>
+  <tbody>
+
+  <?php
+
+   if(isset($getusuario)){
+
+    foreach ($getusuario->result() as $datos) {
+    
+    echo '<tr>';
+    echo '<td>'.$datos->usuario.'</td>';
+    echo '<td>'.$datos->nombre.'</td>';
+    echo '<td>'.$datos->email.'</td>';
+   
+    echo '</tr>';
+    }
+  }
+
+
+  ?>
+  </tbody>  
+</table>
+</div>
+
+</div>
+
+
 </body>
 </html>
