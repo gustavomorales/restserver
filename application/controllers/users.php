@@ -6,10 +6,11 @@ class Users extends CI_Controller {
         parent::__construct();
         $this->load->library('bcrypt');//cargamos la librería
         $this->check_isvalidated();
-    }
 
+
+    }
     private function check_isvalidated(){
-        if(! $this->session->userdata('validated')){
+        if(!$this->session->userdata('validated')){
             redirect('index.php/login');
         }
     }

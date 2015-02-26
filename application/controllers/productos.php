@@ -2,16 +2,38 @@
 
 class Productos extends CI_Controller {
 
-	 function __construct(){
-        parent::__construct();
-        $this->check_isvalidated();
-    }
+	public function __construct()
+	{
+		parent::__construct();
+		$this->check_isvalidated();
+		
+		$this->inactivo();
+	}
 
-    private function check_isvalidated(){
+	private function check_isvalidated(){
         if(! $this->session->userdata('validated')){
             redirect('index.php/login');
         }
     }
+
+    private function inactivo(){
+    	$inac=60;
+
+    	if($this->session->userdata('tiempo'))
+    	{	
+    		
+    		
+    		$vidasession=time()-$this->session->userdata('tiempo');
+    		if($vidasession>$inac){
+    		    $this->session->sess_destroy($userdata);
+        		redirect('index.php/login');	
+    		}
+    		
+    		$this->session->set_userdata('tiempo',time());
+
+    	}
+    }
+
 
 
 	public function index()

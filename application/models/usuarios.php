@@ -25,13 +25,11 @@ Class Usuarios extends CI_Model{
             if($this->bcrypt->check_password($hash, $pass))
             {	
                 return $query;
-            }else{
-            	
-            	return "vacio";
             }
         }
-    
-		
+
+        return false;
+    	
 	}
 
 

@@ -2,10 +2,15 @@
 
 class Login extends CI_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
 	public function index()
 	{
 
-		$this->load->view('login');
+		$this->load->view('login2');
 	}
 
 	public function loguear(){
@@ -22,10 +27,10 @@ class Login extends CI_Controller {
 			$pass=$_POST['pass'];
 			$this->load->model('usuarios');
 			$user=$this->usuarios->login($usuario,$pass);
-			if($user=="vacio"){
+			if(!$user){
 				$datos["mensaje"]="Usuario o Contraseña Incorrectos";
 				
-				$this->load->view('login',$datos);
+				$this->load->view('login2',$datos);
 
 			}
 			else{
@@ -34,7 +39,7 @@ class Login extends CI_Controller {
 				if($user2){
 
 					$this->load->library('session');
-					$userdata=array('usuario'=>$user2[0]->usuario,'email'=>$user2[0]->email,'nombre'=>$user2[0]->nombre,'validated'=>true);
+					$userdata=array('usuario'=>$user2[0]->usuario,'email'=>$user2[0]->email,'nombre'=>$user2[0]->nombre,'validated'=>true,'tiempo'=>time());
 					$this->session->set_userdata($userdata);
 					
 					$this->load->view('inicio');
@@ -47,12 +52,27 @@ class Login extends CI_Controller {
 
 			$datos["mensaje"]="Validacion incorrecta";
 
-			$this->load->view('login',$datos);
+			$this->load->view('login2',$datos);
 		}
 	}
 
-	    public function logout(){
-        $this->session->sess_destroy();
+	public function logout(){
+        $this->session->sess_destroy($userdata);
         redirect('index.php/login');
     }
-}
+
+    public function inactivo(){
+    	$inac=60;
+
+    	if(!$this->session->userdata('tiempo'))
+    	{
+    		$vidasession=time()-$this->session->userdata('tiempo');
+    		if($vidasession>$inac){
+    		    $this->session->sess_destroy($userdata);
+        		redirect('index.php/login');	
+    		}
+
+    	}
+    }
+}	
+
