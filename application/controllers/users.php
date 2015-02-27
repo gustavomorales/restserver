@@ -6,6 +6,7 @@ class Users extends CI_Controller {
         parent::__construct();
         $this->load->library('bcrypt');//cargamos la librería
         $this->check_isvalidated();
+        $this->inactivo();
 
 
     }
@@ -14,6 +15,29 @@ class Users extends CI_Controller {
             redirect('index.php/login');
         }
     }
+
+    private function inactivo(){
+        $inac=60;
+
+        if($this->session->userdata('tiempo'))
+        {   
+            
+            $vidasession=time()-$this->session->userdata('tiempo');
+            if($vidasession>$inac){
+                $this->session->unset_userdata('usuario');
+                $this->session->unset_userdata('email');
+                $this->session->unset_userdata('nombre');
+                $this->session->unset_userdata('validated');
+                
+                redirect('index.php/login');    
+            }
+                
+            $this->session->set_userdata('tiempo',time());
+
+        }
+    }
+
+
 
     public function index(){
 

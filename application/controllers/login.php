@@ -8,8 +8,8 @@ class Login extends CI_Controller {
 	}
 
 	public function index()
-	{
-
+	{	
+		
 		$this->load->view('login2');
 	}
 
@@ -39,9 +39,17 @@ class Login extends CI_Controller {
 				if($user2){
 
 					$this->load->library('session');
-					$userdata=array('usuario'=>$user2[0]->usuario,'email'=>$user2[0]->email,'nombre'=>$user2[0]->nombre,'validated'=>true,'tiempo'=>time());
-					$this->session->set_userdata($userdata);
+
 					
+					$userdata1=array('usuario'=>$user2[0]->usuario,'email'=>$user2[0]->email,'nombre'=>$user2[0]->nombre,'validated'=>true,'tiempo'=>time());
+					$this->session->set_userdata($userdata1);
+    		    	
+    		    	
+					if($this->session->userdata('urlactual')){
+						$t=$this->session->userdata('urlactual');
+						$r=str_replace('restserver/', '', $t);
+						redirect($r);
+					}
 					$this->load->view('inicio');
 				}
 
@@ -57,7 +65,7 @@ class Login extends CI_Controller {
 	}
 
 	public function logout(){
-        $this->session->sess_destroy($userdata);
+        $this->session->sess_destroy();
         redirect('index.php/login');
     }
 

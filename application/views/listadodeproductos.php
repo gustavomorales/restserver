@@ -8,6 +8,8 @@
 <?php $this->load->view('headers/menu') ?>;
 
 
+
+
 <div class="container" style="visibility:<?php if(isset($productos)){echo 'visible';}else{echo 'hidden';} ?>;">
   
   <div class="table-responsive div1">

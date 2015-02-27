@@ -21,3 +21,4 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+   <?php $this->session->set_userdata('urlactual',$_SERVER['REQUEST_URI']);?>

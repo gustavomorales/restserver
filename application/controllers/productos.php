@@ -22,13 +22,16 @@ class Productos extends CI_Controller {
     	if($this->session->userdata('tiempo'))
     	{	
     		
-    		
     		$vidasession=time()-$this->session->userdata('tiempo');
     		if($vidasession>$inac){
-    		    $this->session->sess_destroy($userdata);
+    			$this->session->unset_userdata('usuario');
+    			$this->session->unset_userdata('email');
+    			$this->session->unset_userdata('nombre');
+    			$this->session->unset_userdata('validated');
+    		    
         		redirect('index.php/login');	
     		}
-    		
+    			
     		$this->session->set_userdata('tiempo',time());
 
     	}
