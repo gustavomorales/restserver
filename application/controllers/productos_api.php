@@ -138,7 +138,6 @@ class Productos_api extends REST_Controller{
         $this->load->model('products');
         $this->products->borrar($this->get('id'));
         $message = array('id' => $this->get('id'), 'message' => 'DELETED!');
-        
         $this->response($message, 200); // 200 being the HTTP response code
     }
 

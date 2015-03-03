@@ -9,7 +9,7 @@ class Usuarios extends CI_Controller {
 
     private function check_isvalidated(){
         if(! $this->session->userdata('validated')){
-            redirect('index.php/login');
+            redirect('login');
         }
     }
     public function index(){

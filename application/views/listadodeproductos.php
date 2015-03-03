@@ -48,7 +48,10 @@
     echo '<td style="vertical-align:middle">'.$datos->categoria.'</td>';
     echo '<td style="vertical-align:middle">'.$datos->marca.'</td>';
     echo '<td> <a href="buscar?id='.$datos->producto_id.'" class="btn btn-warning "><i class="glyphicon glyphicon-pencil"></i></a>'."".'</td>';
-    echo '<td> <a href="eliminar?id='.$datos->producto_id.'" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a> '."".'</td>';
+    #echo '<td> <a href="eliminar?id='.$datos->producto_id.'" class="btn btn-danger"'." onclick='return confirm()'" .  '><i class="glyphicon glyphicon-trash"></i></a> '."".'</td>';
+    echo  '<td>';
+    echo anchor("productos/eliminar/?id={$datos->producto_id}", '<i class="glyphicon glyphicon-trash"></i>', array('onclick'=>"return confirm('¿Está seguro que desea eliminar {$datos->producto}?')", 'class' => 'btn btn-danger'));
+    echo '</td>';
     echo '</tr>';
     }
   }

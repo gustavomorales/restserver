@@ -12,7 +12,7 @@ class Users extends CI_Controller {
     }
     private function check_isvalidated(){
         if(!$this->session->userdata('validated')){
-            redirect('index.php/login');
+            redirect('login');
         }
     }
 
@@ -29,7 +29,7 @@ class Users extends CI_Controller {
                 $this->session->unset_userdata('nombre');
                 $this->session->unset_userdata('validated');
                 
-                redirect('index.php/login');    
+                redirect('login');    
             }
                 
             $this->session->set_userdata('tiempo',time());
